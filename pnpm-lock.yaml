@@ -57,7 +57,7 @@ importers:
 
   packages/integration-test:
     specifiers:
-      '@playwright/test': ^1.25.0
+      '@playwright/test': ^1.25.1
       '@sveltejs/adapter-auto': next
       '@sveltejs/kit': next
       '@tcc-sejohnson/vite-plugin-sveltekit-feature-flags': workspace:*

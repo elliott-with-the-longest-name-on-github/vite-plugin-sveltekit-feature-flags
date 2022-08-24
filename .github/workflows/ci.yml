@@ -101,7 +101,7 @@ jobs:
         run: |
           pnpm install --frozen-lockfile --prefer-offline --ignore-scripts
       - name: playwright install
-        run: pnpm playwright install
+        run: cd ./packages/integration-test && pnpm playwright install && cd ../..
       - name: build
         run: pnpm run build
       - name: run tests
