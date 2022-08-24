@@ -1,9 +1,9 @@
 {
-  "name": "vite-plugin-template-monorepo",
+  "name": "vite-plugin-sveltekit-feature-flags-monorepo",
   "private": true,
   "license": "MIT",
   "scripts": {
-    "dev": "pnpm --dir packages/vite-plugin-template dev",
+    "dev": "pnpm --dir packages/vite-plugin-sveltekit-feature-flags dev",
     "build": "pnpm -r build",
     "test": "pnpm -r --workspace-concurrency=1 test",
     "lint": "eslint --ignore-path .gitignore '**/*.{js,ts,html,md}'",
@@ -12,8 +12,7 @@
     "format:fix": "pnpm run format --write",
     "fixup": "run-s lint:fix format:fix",
     "release": "pnpm run build && pnpm changeset publish",
-    "prepare": "husky install",
-    "setup": "node scripts/initial-setup.cjs"
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@changesets/cli": "^2.24.3",
@@ -55,7 +54,7 @@
   },
   "pnpm": {
     "overrides": {
-      "@svitejs/vite-plugin-template": "workspace:*"
+      "@tcc-sejohnson/vite-plugin-sveltekit-feature-flags": "workspace:*"
     }
   }
 }
