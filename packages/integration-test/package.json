@@ -9,7 +9,9 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"test": "PUBLIC_MIGHT_EXIST=\"hello, possibly-undefined world\" PRIVATE_MIGHT_EXIST=\"hello, possibly-undefined secret world\" playwright test",
+		"test": "pnpm run test:dev && pnpm run test:build",
+		"test:dev": "cross-env DEV=true PUBLIC_MIGHT_EXIST=\"hello, possibly-undefined world\" PRIVATE_MIGHT_EXIST=\"hello, possibly-undefined secret world\" playwright test",
+		"test:build": "cross-env PUBLIC_MIGHT_EXIST=\"hello, possibly-undefined world\" PRIVATE_MIGHT_EXIST=\"hello, possibly-undefined secret world\" playwright test",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
@@ -19,8 +21,10 @@
 		"@playwright/test": "^1.25.0",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
+		"@tcc-sejohnson/vite-plugin-sveltekit-feature-flags": "workspace:*",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
 		"@typescript-eslint/parser": "^5.27.0",
+		"cross-env": "^7.0.3",
 		"eslint": "^8.16.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-svelte3": "^4.0.0",
@@ -31,8 +35,7 @@
 		"svelte-preprocess": "^4.10.6",
 		"tslib": "^2.3.1",
 		"typescript": "^4.7.4",
-		"vite": "^3.0.4",
-		"@tcc-sejohnson/vite-plugin-sveltekit-feature-flags": "workspace:*"
+		"vite": "^3.0.4"
 	},
 	"type": "module"
 }
