@@ -9,6 +9,11 @@ on:
     branches:
       - main
 
+# cancel in-progress runs on new commits to same PR (gitub.event.number)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
+  cancel-in-progress: true
+
 jobs:
   # "checks" job runs on linux + node14 only and checks that install, build, lint and audit work
   # it also primes the pnpm store cache for linux, important for downstream tests
@@ -109,6 +114,7 @@ jobs:
         shell: bash
         run: find packages -type d -name test-results -not -empty | tar -czf test-results.tar.gz --files-from=-
       - name: Upload test results
+        if: failure()
         uses: actions/upload-artifact@v3
         with:
           retention-days: 3
