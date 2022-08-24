@@ -1,5 +1,5 @@
 name: "\U0001F680 Feature Request"
-description: Request a new vite-plugin-template feature
+description: Request a new vite-plugin-sveltekit-feature-flags feature
 labels: [enhancement, triage]
 body:
   - type: markdown
@@ -37,6 +37,6 @@ body:
       options:
         - nice to have
         - would make my life easier
-        - i cannot use vite-plugin-template without it
+        - i cannot use vite-plugin-sveltekit-feature-flags without it
     validations:
       required: true

@@ -1,7 +1,7 @@
 blank_issues_enabled: false
 contact_links:
  - name: GitHub Community
-   url: https://github.com/svitejs/vite-plugin-template/discussions
+   url: https://github.com/tcc-sejohnson/vite-plugin-sveltekit-feature-flags/discussions
    about: Please ask and answer questions here.
 #  - name: Discord
 #    url: https://discord.gg/nzgMZJD

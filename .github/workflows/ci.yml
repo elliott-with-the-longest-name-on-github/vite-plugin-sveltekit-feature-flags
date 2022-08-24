@@ -9,6 +9,11 @@ on:
     branches:
       - main
 
+# cancel in-progress runs on new commits to same PR (gitub.event.number)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
+  cancel-in-progress: true
+
 jobs:
   # "checks" job runs on linux + node14 only and checks that install, build, lint and audit work
   # it also primes the pnpm store cache for linux, important for downstream tests
@@ -63,12 +68,23 @@ jobs:
       matrix:
         node: [16]
         os: [ubuntu-latest, macos-latest, windows-latest]
+        e2e-browser: ['chromium']
         include:
-          - node: 14
+          - node: 16
             os: ubuntu-latest
+            e2e-browser: 'firefox'
+          - node: 16
+            os: macOS-latest
+            e2e-browser: 'safari'
           - node: 18
             os: ubuntu-latest
+            e2e-browser: 'chromium'
+    env:
+      # Install playwright's binray under node_modules so it will be cached together
+      PLAYWRIGHT_BROWSERS_PATH: '0'
+      KIT_E2E_BROWSER: ${{matrix.e2e-browser}}
     steps:
+      - run: git config --global core.autocrlf false
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
@@ -84,10 +100,23 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: 'pnpm'
           cache-dependency-path: '**/pnpm-lock.yaml'
-      - name: install
+      - name: pnpm install
         run: |
           pnpm install --frozen-lockfile --prefer-offline --ignore-scripts
+      - name: playwright install
+        run: cd ./packages/integration-test && pnpm playwright install && cd ../..
       - name: build
         run: pnpm run build
       - name: run tests
         run: pnpm test
+      - name: Archive test results
+        if: failure()
+        shell: bash
+        run: find packages -type d -name test-results -not -empty | tar -czf test-results.tar.gz --files-from=-
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          retention-days: 3
+          name: test-failure-${{ github.run_id }}-${{ matrix.os }}-${{ matrix.node-version }}-${{ matrix.e2e-browser }}
+          path: test-results.tar.gz

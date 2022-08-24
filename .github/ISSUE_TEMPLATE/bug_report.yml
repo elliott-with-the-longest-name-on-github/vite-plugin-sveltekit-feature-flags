@@ -1,11 +1,11 @@
 name: "\U0001F41E Bug report"
-description: Report an issue with vite-plugin-template
+description: Report an issue with vite-plugin-sveltekit-feature-flags
 labels: ["bug", "triage"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thank you for participating in vite-plugin-template! Please check for existing reports before creating a new one.
+        Thank you for participating in vite-plugin-sveltekit-feature-flags! Please check for existing reports before creating a new one.
   - type: textarea
     id: bug-description
     attributes:
@@ -32,7 +32,7 @@ body:
     id: system-info
     attributes:
       label: System Info
-      description: Output of `npx envinfo --system --binaries --browsers --npmPackages "{@svitejs/vite-plugin-template}"`
+      description: Output of `npx envinfo --system --binaries --browsers --npmPackages "{@tcc-sejohnson/vite-plugin-sveltekit-feature-flags}"`
       render: shell
       placeholder: System, Binaries, Browsers
     validations:
@@ -45,6 +45,6 @@ body:
       options:
         - annoyance
         - blocking an upgrade
-        - blocking all usage of vite-plugin-template
+        - blocking all usage of vite-plugin-sveltekit-feature-flags
     validations:
       required: true

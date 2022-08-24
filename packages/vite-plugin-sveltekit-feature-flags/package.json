@@ -1,0 +1,41 @@
+{
+  "name": "@tcc-sejohnson/vite-plugin-sveltekit-feature-flags",
+  "version": "0.0.0",
+  "license": "MIT",
+  "author": "tcc-sejohnson",
+  "private": false,
+  "type": "module",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "dev": "tsup-node --watch src",
+    "build": "tsup-node --dts",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
+  },
+  "engines": {
+    "node": ">=16.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tcc-sejohnson/vite-plugin-sveltekit-feature-flags.git",
+    "directory": "packages/vite-plugin-sveltekit-feature-flags"
+  },
+  "bugs": {
+    "url": "https://github.com/tcc-sejohnson/vite-plugin-sveltekit-feature-flags/issues"
+  },
+  "homepage": "https://github.com/tcc-sejohnson/vite-plugin-sveltekit-feature-flags/tree/main/packages/vite-plugin-sveltekit-feature-flags#readme",
+  "peerDependencies": {
+    "vite": "^3.0.4"
+  },
+  "devDependencies": {
+    "vite": "^3.0.7",
+    "vitest": "^0.21.1"
+  }
+}
