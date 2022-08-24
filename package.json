@@ -50,7 +50,7 @@
     "pnpm": "^7.8.0",
     "yarn": "forbidden, use pnpm",
     "npm": "forbidden, use pnpm",
-    "node": "^14.18.0 || ^16 || >= 18"
+    "node": ">=16.9"
   },
   "pnpm": {
     "overrides": {
